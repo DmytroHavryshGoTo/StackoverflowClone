@@ -12,13 +12,13 @@ module StackoverflowClone
     config.load_defaults 6.0
 
     config.generators do |g|
-      g.test_framework :rspec,
-                        fixtures: true,
-                        view_spec: false,
-                        helper_spec: false,
-                        routing_spec: false,
-                        request_spec: false,
-                        controller_spec: true
+      g.test_framework :rspec
+      g.helper_specs false
+      g.controller_specs true
+      g.view_specs false
+      g.routing_specs false
+      g.fixtures true
+      g.request_specs true
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
   end
