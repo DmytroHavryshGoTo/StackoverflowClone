@@ -1,0 +1,11 @@
+h1= @question.title
+p= @question.body
+= link_to 'Delete question', @question, method: :delete
+
+= form_for [@question, @answer] do |f|
+  = f.label :body
+  = f.text_area :body
+  = f.submit 'Add answer'
+
+= @answers.each do |answer|
+  p= answer.body

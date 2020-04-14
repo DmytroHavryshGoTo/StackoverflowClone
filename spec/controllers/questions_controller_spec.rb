@@ -34,6 +34,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'Get #new' do
+    sign_in_user
     before { get :new}
 
     it 'assigns new question to new @question' do
@@ -46,6 +47,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'GET #edit' do
+    sign_in_user
     before do
       get :edit, params: { id: question }
     end
@@ -60,6 +62,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'POST #create' do
+    sign_in_user
     context 'creating question with valid data' do
       it 'saves question in database' do
         expect { post :create, params: { question: attributes_for(:question) } }.to change(Question, :count).by(1)
@@ -84,13 +87,14 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'PATCH #update' do
+    sign_in_user
     context 'valid data' do
       it 'assigns the requested question to @question' do
         patch :update, params: { id: question, question: attributes_for(:question) }
         expect(assigns(:question)).to eq question
       end
 
-      it 'updates aquestion attributes' do
+      it 'updates question attributes' do
         patch :update, params: { id: question, question: { title: 'Test', body: 'Body'} }
         question.reload
         expect(question.title).to eq 'Test'
@@ -105,12 +109,13 @@ RSpec.describe QuestionsController, type: :controller do
 
     context 'invalid data' do
       before do
+        @prev_title = question.title
         patch :update, params: { id: question, question: { title: nil, body: nil } }
       end
 
-      it 'updates aquestion attributes' do
+      it 'updates question attributes' do
         question.reload
-        expect(question.title).to eq 'MyString'
+        expect(question.title).to eq @prev_title
         expect(question.body).to eq 'MyString'
       end
 
@@ -121,13 +126,17 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    sign_in_user
+
+    let(:own_question) { create(:question, user: @user) }
+
     it 'removes question from database' do
-      question
-      expect { delete :destroy, params: { id: question } }.to change(Question, :count).by(-1)
+      own_question
+      expect { delete :destroy, params: { id: own_question } }.to change(Question, :count).by(-1)
     end
 
     it 'redirects to all questions' do
-      delete :destroy, params: { id: question }
+      delete :destroy, params: { id: own_question }
       expect(response).to redirect_to questions_path
     end
   end

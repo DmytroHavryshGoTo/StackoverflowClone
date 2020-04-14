@@ -39,7 +39,6 @@ group :development, :test do
 
   gem 'factory_bot_rails'
 
-  gem 'launchy'
 end
 
 group :development do
@@ -59,6 +58,7 @@ group :test do
   gem 'webdrivers'
 
   gem 'shoulda-matchers'
+  gem 'launchy'
 
   gem 'rails-controller-testing'
 end
