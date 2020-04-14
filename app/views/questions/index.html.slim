@@ -1,5 +1,8 @@
-h1 All questions
-- @questions.each do |question|
-  = link_to question.title, question_path(question)
-
-p= link_to 'Ask question', new_question_path
+.row.all-questions
+  .col-12.pt-2.pb-2
+    h1.underline All questions
+  - @questions.each do |question|
+    .col-12.question
+      = link_to question.title, question_path(question)
+      p= question.body
+      span.time= question.created_at.strftime("%d %b, %Y")
