@@ -7,6 +7,12 @@
         = f.label :email
         = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
       .form-group
+        = f.label :first_name
+        = f.text_field :first_name, autofocus: true, autocomplete: "name", class: 'form-control'
+      .form-group
+        = f.label :last_name
+        = f.text_field :last_name, autofocus: true, autocomplete: "last-name", class: 'form-control'
+      .form-group
         = f.label :password
         = f.password_field :password, autocomplete: "new-password", minlength: 6, class: 'form-control'
       .form-group

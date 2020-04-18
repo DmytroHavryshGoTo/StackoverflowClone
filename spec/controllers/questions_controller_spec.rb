@@ -20,12 +20,17 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'GET #show' do
+    sign_in_user
     before do
       get :show, params: { id: question }
     end
 
     it 'assigns question to @question' do
       expect(assigns(:question)).to eq question
+    end
+
+    it 'assigns answer to @answer' do
+      expect(assigns(:answer)).to be_a_new(Answer)
     end
 
     it 'renders show view' do
@@ -88,29 +93,31 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe 'PATCH #update' do
     sign_in_user
+    let(:own_question) { create(:question, user: @user) }
+
     context 'valid data' do
       it 'assigns the requested question to @question' do
-        patch :update, params: { id: question, question: attributes_for(:question) }
-        expect(assigns(:question)).to eq question
+        patch :update, params: { id: own_question, question: attributes_for(:question) }, format: :js
+        expect(assigns(:question)).to eq own_question
       end
 
       it 'updates question attributes' do
-        patch :update, params: { id: question, question: { title: 'Test', body: 'Body'} }
-        question.reload
-        expect(question.title).to eq 'Test'
-        expect(question.body).to eq 'Body'
+        patch :update, params: { id: own_question, question: { title: 'Test', body: 'Body'} }, format: :js
+        own_question.reload
+        expect(own_question.title).to eq 'Test'
+        expect(own_question.body).to eq 'Body'
       end
 
       it 'renders show view' do
-        patch :update, params: { id: question, question: attributes_for(:question) }
-        expect(response).to redirect_to question
+        patch :update, params: { id: own_question, question: attributes_for(:question) }, format: :js
+        expect(response).to redirect_to own_question
       end
     end
 
     context 'invalid data' do
       before do
         @prev_title = question.title
-        patch :update, params: { id: question, question: { title: nil, body: nil } }
+        patch :update, params: { id: question, question: { title: nil, body: nil } }, format: :js
       end
 
       it 'updates question attributes' do
@@ -120,7 +127,7 @@ RSpec.describe QuestionsController, type: :controller do
       end
 
       it 'renders edit view' do
-        expect(response).to render_template :edit
+        expect(response).to render_template :update
       end
     end
   end

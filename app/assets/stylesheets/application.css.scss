@@ -16,8 +16,10 @@
 
 @import 'bootstrap/scss/bootstrap';
 
+
 $blue: #243549;
 $light_blue: #2796b7;
+$light_gray: #e8e8e8;
 
 a {
   transition: 0.2s;
@@ -173,7 +175,7 @@ form {
       top: 0;
       right: 0;
       padding: 10px;
-      background-color: #e8e8e8;
+      background-color: $light_gray;
       border-radius: 0 5px 0 0;
     }
   }
@@ -182,5 +184,78 @@ form {
   ul {
     list-style: none;
     padding-left: 10px;
+  }
+}
+
+.single-question {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  .delete-question {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+  .edit-question {
+    position: absolute;
+    top: 50px;
+    right: 5px;
+  }
+  & > form {
+    display: none;
+  }
+  .info {
+    background-color: $light_gray;
+    display: flex;
+    justify-content: start;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    span {
+      padding: 6px 15px;
+      display: flex;
+      width: max-content;
+    }
+  }
+  h1 {
+    padding: 20px;
+  }
+  p {
+    padding: 15px;
+  }
+}
+.answers {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  .single-answer {
+    .best {
+      margin-left: 14px;
+      display: inline-block;
+      color: #31a744;
+    }
+    .mark-best {
+      padding: 4px;
+      font-size: 13px;
+      margin-left: 10px;
+    }
+    h5 {
+      width: max-content;
+      display: inline-block;
+    }
+    .body {
+      padding: 10px 80px 10px 10px;
+    }
+    .delete {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+    .edit {
+      position: absolute;
+      top: 50px;
+      right: 5px;
+    }
+    form {
+      display: none;
+    }
   }
 }

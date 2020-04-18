@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'slim-rails'
+gem 'font_awesome5_rails'
 
 gem 'devise'
 # Use Active Storage variant
@@ -38,6 +39,9 @@ group :development, :test do
   gem 'rspec-rails'
 
   gem 'factory_bot_rails'
+
+  gem 'database_cleaner-active_record'
+  gem 'database_cleaner-sequel'
 
 end
 

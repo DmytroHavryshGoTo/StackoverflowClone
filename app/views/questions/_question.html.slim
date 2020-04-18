@@ -1,0 +1,18 @@
+h1= @question.title
+- if current_user == @question.user
+  = link_to 'Delete', @question, method: :delete, class: 'delete-question btn btn-danger'
+  = link_to 'Edit', '', class: 'edit-question btn btn-primary'
+.info
+  span= "#{@question.user.first_name} #{@question.user.last_name}"
+  span= @question.created_at.strftime("%d %b, %Y")
+  span= "#{@question.answers.count} Comments"
+p= @question.body
+= form_with model: @question, class: 'p-3' do |f|
+  #question-errors
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.label :body
+    = f.text_area :body, class: 'form-control'
+  = f.submit 'Save', class: 'btn btn-success'

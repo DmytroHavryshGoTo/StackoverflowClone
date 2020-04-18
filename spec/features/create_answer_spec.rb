@@ -5,25 +5,26 @@ feature 'User create answer to question' do
   given(:user_2) { create(:user) }
   given(:question) { create(:question) }
 
-  scenario 'Authenticated user creates answer to question' do
+  scenario 'Authenticated user creates answer to question', js: true do
     sign_in(user)
 
     visit question_path(question)
 
     question_link = current_path
 
-    fill_in 'Body', with: 'Test answer'
+    fill_in 'Your answer', with: 'Test answer'
     click_on 'Add answer'
 
     expect(current_path).to eq question_link
-    expect(page).to have_content 'Test answer'
+
+    within '.answers' do
+      expect(page).to have_content 'Test answer'
+    end
   end
 
   scenario 'Non-authenticated user tries to create answer' do
     visit question_path(question)
-    fill_in 'Body', with: 'Test answer'
-    click_on 'Add answer'
 
-    expect(current_path).to eq new_user_session_path
+    expect(page).to_not have_content 'Add answer'
   end
 end

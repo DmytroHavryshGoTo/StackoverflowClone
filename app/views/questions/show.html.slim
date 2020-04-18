@@ -1,11 +1,19 @@
-h1= @question.title
-p= @question.body
-= link_to 'Delete question', @question, method: :delete
+.row
+  .col-12.mt-4.single-question.p-0#single-question
+    = render 'question'
+  .col-12.mt-4.mb-2
+    .answers.row
+      .col-12.p-0
+        h2= "Comments (#{@question.answers.count})"
+      = render 'answers/answers'
+    - if user_signed_in?
+      .col-12#add-answer
+        .add-answer-errors
+        = form_with model: [@question, @answer], class: 'mt-2 mb-2' do |f|
+          = f.label :body, 'Your answer'
+          = f.text_area :body, class: 'form-control pt-2 pb-2'
+          = f.submit 'Add answer', class: 'btn btn-success mt-2'
+= javascript_pack_tag 'question/edit'
+= javascript_pack_tag 'answer/edit'
 
-= form_for [@question, @answer] do |f|
-  = f.label :body
-  = f.text_area :body
-  = f.submit 'Add answer'
 
-= @answers.each do |answer|
-  p= answer.body

@@ -1,0 +1,9 @@
+$('#add-answer textarea')[0].value = ''
+<% if @answer.errors.present? %>
+  $('.add-answer-errors')[0].innerHTML = ''
+  <% @answer.errors.full_messages.each do |message| %>
+    $('.add-answer-errors')[0].innerHTML += '<p class="alert alert-danger"><%= message %></p>'
+  <% end %>
+<% else %>
+  $('.answers')[0].innerHTML += '<%= j render 'answers/answer', answer: @answer %>'
+<% end %>

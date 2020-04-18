@@ -11,8 +11,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @answer = @question.answers.new
-    @answers = @question.answers
+    if user_signed_in?
+      @answer = current_user.answers.build
+    end
   end
 
   def edit
@@ -28,10 +29,11 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    if @question.update(question_params)
-      redirect_to @question
-    else
-      render :edit
+    if @question.user == current_user
+      @question.update(question_params)
+    end
+    respond_to do |format|
+      format.js
     end
   end
 
