@@ -9,8 +9,11 @@
     = link_to 'mark as best', mark_best_question_answer_path(@question, answer), method: :post, remote: true, class: 'btn btn-success mark-best', data: { answer_id: answer.id }
   p= "Posted on #{answer.created_at.strftime("%d %b, %Y")}"
   p.body.underline= answer.body
+  - answer.attachments.each do |a|
+    = render 'common/single_attachment', a: a
   = form_with model: [@question, answer], html: { id: "edit-answer-#{answer.id}" }, class: "mt-2 mb-2" do |f|
     .answer-errors
     = f.label :body, 'Your answer'
     = f.text_area :body, class: 'form-control pt-2 pb-2'
+    = render 'questions/attachment', form: f
     = f.submit 'Save', class: 'btn btn-success mt-2'

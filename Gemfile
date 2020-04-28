@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'slim-rails'
 gem 'font_awesome5_rails'
+gem 'carrierwave', '~> 2.0'
 
 gem 'devise'
 # Use Active Storage variant
@@ -53,6 +54,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener'
+  gem 'pry'
 end
 
 group :test do

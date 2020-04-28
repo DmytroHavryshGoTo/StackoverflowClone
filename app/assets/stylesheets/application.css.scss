@@ -222,12 +222,13 @@ form {
     padding: 15px;
   }
 }
+
 .answers {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   .single-answer {
-    .best {
+    svg.best {
       margin-left: 14px;
       display: inline-block;
       color: #31a744;
@@ -237,6 +238,7 @@ form {
       font-size: 13px;
       margin-left: 10px;
     }
+
     h5 {
       width: max-content;
       display: inline-block;
@@ -256,6 +258,33 @@ form {
     }
     form {
       display: none;
+    }
+  }
+}
+.file {
+  display: block;
+  text-align: center;
+  padding: 10px 0;
+  p {
+    overflow: hidden;
+    font-size: 11px;
+    padding: 0;
+  }
+  svg {
+    font-size: 50px;
+  }
+}
+.single-attachment {
+  position: relative;
+  width: 25%;
+  .remove-file {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 20px;
+    color: #dc3545;
+    &:hover {
+      color: #721c24;
     }
   }
 }

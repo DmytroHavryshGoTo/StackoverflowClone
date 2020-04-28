@@ -7,6 +7,10 @@ h1= @question.title
   span= @question.created_at.strftime("%d %b, %Y")
   span= "#{@question.answers.count} Comments"
 p= @question.body
+.info
+  span Attachments:
+- @question.attachments.each do |a|
+  = render 'common/single_attachment', a: a
 = form_with model: @question, class: 'p-3' do |f|
   #question-errors
   .form-group
@@ -15,4 +19,5 @@ p= @question.body
   .form-group
     = f.label :body
     = f.text_area :body, class: 'form-control'
+  = render 'attachment', form: f
   = f.submit 'Save', class: 'btn btn-success'

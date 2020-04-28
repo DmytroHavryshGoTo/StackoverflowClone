@@ -8,4 +8,6 @@
       .form-group
         = f.label :body
         = f.text_area :body, class: 'form-control'
-      = f.submit 'Create', class: 'btn btn-success'
+      .form-group
+        = render 'attachment', form: f
+      = f.submit 'Create', class: 'btn btn-success mb-2'

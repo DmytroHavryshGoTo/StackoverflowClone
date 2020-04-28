@@ -1,0 +1,5 @@
+= form.fields_for :attachments do |a|
+  .form-group
+    p.mb-2 Attachments:
+    = a.label :file
+    = a.file_field :file, class: 'form-control-file'

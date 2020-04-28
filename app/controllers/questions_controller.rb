@@ -8,11 +8,13 @@ class QuestionsController < ApplicationController
 
   def new
     @question = current_user.questions.new
+    @question.attachments.build
   end
 
   def show
     if user_signed_in?
       @answer = current_user.answers.build
+      @answer.attachments.build
     end
   end
 
@@ -52,7 +54,11 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
   end
 
+  def build_attachment
+    @question.attachments.build
+  end
+
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body, attachments_attributes: [:file, :id])
   end
 end

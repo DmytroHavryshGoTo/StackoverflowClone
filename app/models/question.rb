@@ -3,6 +3,8 @@ class Question < ApplicationRecord
   validates :body, presence: true
   has_many :answers, dependent: :delete_all
   belongs_to :user
+  has_many :attachments, as: :attachable
+  accepts_nested_attributes_for :attachments
 
   default_scope { order(:created_at) }
 
