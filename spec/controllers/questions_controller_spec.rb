@@ -59,21 +59,6 @@ RSpec.describe QuestionsController, type: :controller do
     end
   end
 
-  describe 'GET #edit' do
-    sign_in_user
-    before do
-      get :edit, params: { id: question }
-    end
-
-    it 'assigns new question to new @question' do
-      expect(assigns(:question)).to eq question
-    end
-
-    it 'renders edit view' do
-      expect(response).to render_template :edit
-    end
-  end
-
   describe 'POST #create' do
     sign_in_user
     context 'creating question with valid data' do
@@ -82,7 +67,7 @@ RSpec.describe QuestionsController, type: :controller do
       end
 
       it 'redirects to show view' do
-        post :create, params: { question: attributes_for(:question) } 
+        post :create, params: { question: attributes_for(:question) }
         expect(response).to redirect_to assigns(:question)
       end
     end
@@ -134,7 +119,7 @@ RSpec.describe QuestionsController, type: :controller do
         expect(question.body).to eq 'MyString'
       end
 
-      it 'renders edit view' do
+      it 'renders update view' do
         expect(response).to render_template :update
       end
     end

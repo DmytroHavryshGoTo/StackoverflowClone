@@ -3,6 +3,8 @@ class AnswersController < ApplicationController
   before_action :load_question
   before_action :load_answer, only: %i[destroy update mark_best]
 
+  authorize_resource
+
   def create
     @answer = @question.answers.build(answer_params.merge({ user: current_user }))
     @answer.save
@@ -21,6 +23,7 @@ class AnswersController < ApplicationController
   end
 
   def mark_best
+    authorize! :mark_best, @answer, user: @question.user
     if @question.user == current_user
       @question.make_best(@answer)
     end

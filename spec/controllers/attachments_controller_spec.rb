@@ -7,7 +7,7 @@ RSpec.describe AttachmentsController, type: :controller do
     let(:answer) { create(:answer, question: question, user: @user, attachments: create_list(:attachment, 2)) }
 
     it 'Removes file from db' do
-      delete :destroy, params: { id: answer }, format: :js
+      expect { delete :destroy, params: { id: answer.attachments.first }, format: :js }.to change(answer.attachments, :count).by(-1)
     end
   end
 

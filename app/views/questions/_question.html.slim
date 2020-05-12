@@ -1,5 +1,5 @@
 h1= @question.title
-- if current_user == @question.user
+- if can?(:update, @question)
   = link_to 'Delete', @question, method: :delete, class: 'delete-question btn btn-danger'
   = link_to 'Edit', '', class: 'edit-question btn btn-primary'
 .info

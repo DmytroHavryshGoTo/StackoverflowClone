@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'capybara'
 require 'database_cleaner/active_record'
 require 'support/database_cleaner'
+require 'cancan/matchers'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 

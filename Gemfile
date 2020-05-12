@@ -29,6 +29,7 @@ gem 'carrierwave', '~> 2.0'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'cancancan'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -46,7 +47,6 @@ group :development, :test do
   gem 'database_cleaner-active_record'
   gem 'database_cleaner-sequel'
   gem 'rubocop', require: false
-  gem 'rbeautify', require: false
 
 end
 

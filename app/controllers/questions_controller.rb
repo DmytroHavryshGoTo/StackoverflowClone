@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :load_question, only: %i[show edit update destroy]
+  before_action :load_question, only: %i[show update destroy]
+
+  authorize_resource
 
   def index
     @questions = Question.all
@@ -16,9 +18,6 @@ class QuestionsController < ApplicationController
       @answer = current_user.answers.build
       @answer.attachments.build
     end
-  end
-
-  def edit
   end
 
   def create
