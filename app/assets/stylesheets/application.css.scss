@@ -258,6 +258,11 @@ form {
     }
     form {
       display: none;
+      label {
+        width: 100%;
+        display: block;
+        float: left;
+      }
     }
   }
 }
@@ -277,6 +282,7 @@ form {
 .single-attachment {
   position: relative;
   width: 25%;
+  float: left;
   .remove-file {
     position: absolute;
     top: 0;
@@ -286,5 +292,37 @@ form {
     &:hover {
       color: #721c24;
     }
+  }
+}
+.add_fields {
+  color: #fff;
+  padding: 6px 12px;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  border-radius: 0.25rem;
+  display: none;
+  &:hover {
+    color: #fff;
+    background-color: #138496;
+    border-color: #117a8b;
+  }
+  &:last-of-type {
+    display: inline;
+  }
+}
+.remove_fields.dynamic {
+
+}
+.remove_fields.existing {
+  color: #fff;
+  padding: 6px 12px;
+  background-color: #dc3545;
+  border-color: #dc3545;
+  border-radius: 0.25rem;
+  margin-top: 10px;
+  &:hover {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #bd2130;
   }
 }
