@@ -1,0 +1,30 @@
+.container-fluid.login-nav
+  - if notice.present?
+    p.notice.alert.alert-success.notification= notice
+  - if alert.present?
+    p.alert.alert-danger.notification= alert
+  .container
+    .nav.text-right
+      - if user_signed_in?
+        = link_to 'Sign out', destroy_user_session_path, method: :delete
+      - else
+        = link_to 'Sign in', new_user_session_path
+        = link_to 'Sign up', new_user_registration_path
+.container
+  .row
+    .col-12.logo-banner.text-center
+      .row
+        .col-md-6.offset-3.text-center.mb-4.mt-4
+          a href='/'
+            h1
+              | Stackover
+              span.blue
+                | blow
+.container-fluid.main-nav
+  .container
+    .row
+      .col-md-6.offset-3.menu
+        .row
+          = link_to 'Home', root_path, :class => current_class?(root_path)
+          = link_to 'Ask question', new_question_path, :class => current_class?(new_question_path)
+          = link_to 'Help', root_path, :class => current_class?(new_user_session_path)

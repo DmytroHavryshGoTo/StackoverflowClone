@@ -1,0 +1,14 @@
+<% if @question.errors.present? %>
+  document.getElementById('question-errors').innerHTML = ''
+  <% @question.errors.full_messages.each do |message| %>
+    document.getElementById('question-errors').innerHTML += '<p class="alert alert-danger"><%= message %></p>'
+  <% end %>
+<% else %>
+  document.getElementById('single-question').innerHTML = '<%= j render 'questions/question' %>'
+  $('.edit-question').click( function (e) {
+      e.preventDefault()
+      $('.single-question > p').hide()
+      $('.single-question > form').show()
+      return false
+  })
+<% end %>

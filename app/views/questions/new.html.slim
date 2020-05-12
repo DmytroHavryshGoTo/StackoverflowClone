@@ -1,0 +1,13 @@
+.row
+  .col-12.mt-2
+    h1.underline Create new question
+    = form_for @question do |f|
+      .form-group
+        = f.label :title
+        = f.text_field :title, class: 'form-control'
+      .form-group
+        = f.label :body
+        = f.text_area :body, class: 'form-control'
+      .form-group
+        = render 'attachments/attachment', f: f
+      = f.submit 'Create', class: 'btn btn-success mb-2'

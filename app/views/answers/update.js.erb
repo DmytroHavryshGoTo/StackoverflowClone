@@ -1,0 +1,15 @@
+<% if @answer.errors.present? %>
+  $('#edit-answer-<%= @answer.id %> > .answer-errors')[0].innerHTML = ''
+  <% @answer.errors.full_messages.each do |message| %>
+  $('#edit-answer-<%= @answer.id %> > .answer-errors')[0].innerHTML += '<p class="alert alert-danger"><%= message %></p>'
+  <% end %>
+<% else %>
+  $('.answers')[0].innerHTML = '<%= j render 'answers/answers' %>'
+  $('.single-answer .edit').click(function (e) {
+      e.preventDefault()
+      $(this).hide()
+      const answer_id = $(this).data('answerId')
+      $('form#edit-answer-' + answer_id).show()
+      $('form#edit-answer-' + answer_id).closest('.body').hide()
+  })
+<% end %>

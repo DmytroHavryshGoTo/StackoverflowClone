@@ -1,0 +1,7 @@
+p.mb-2 Attachments:
+= f.fields_for :attachments do |a|
+  .form-group
+    = render 'attachments/attachment_fields', a: a
+  = link_to_add_association 'add another file', f, :attachments,
+          partial: 'attachments/attachment_fields', form_name: :a,
+          render_options: { wrapper: 'inline' }
