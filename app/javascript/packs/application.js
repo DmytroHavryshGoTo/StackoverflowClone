@@ -5,6 +5,7 @@
 
 import 'bootstrap'
 import "@fortawesome/fontawesome-free/js/all";
+import 'cocoon-js'
 require('expose-loader?$!jquery')
 require("@rails/ujs").start()
 require("turbolinks").start()

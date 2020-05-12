@@ -12,7 +12,8 @@
         = form_with model: [@question, @answer], class: 'mt-2 mb-2' do |f|
           = f.label :body, 'Your answer'
           = f.text_area :body, class: 'form-control pt-2 pb-2'
-          = render 'attachment', form: f
-          = f.submit 'Add answer', class: 'btn btn-success mt-2'
+          = render 'attachments/attachment', f: f
+          .form-group
+            = f.submit 'Add answer', class: 'btn btn-success mt-2'
 = javascript_pack_tag 'question/edit'
 = javascript_pack_tag 'answer/edit'
