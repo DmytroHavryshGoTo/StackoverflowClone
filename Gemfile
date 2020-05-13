@@ -31,6 +31,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'cancancan'
+gem 'doorkeeper'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -73,6 +74,8 @@ group :test do
   gem 'launchy'
 
   gem 'rails-controller-testing'
+
+  gem 'json_spec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
