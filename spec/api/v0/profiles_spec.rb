@@ -49,4 +49,57 @@ RSpec.describe 'Profile API' do
       end
     end
   end
+
+  describe 'GET ' do
+    context 'unauthorized' do
+      headers = {
+        "CONTENT_TYPE" => "application/json"
+      }
+
+      it 'returns 401 status if there is no access_token' do
+        get '/api/v0/profiles', headers: headers
+        expect(response.status).to eq 401
+      end
+
+      it 'returns 401 if access_token is invalid' do
+        get '/api/v0/profiles', headers: headers, params: { access_token: '1234' }
+        expect(response.status).to eq 401
+      end
+    end
+
+    context 'authorized' do
+      let!(:user) { create(:user) }
+      let!(:users) { create_list(:user, 2) }
+      let!(:access_token) { create(:access_token, resource_owner_id: user.id) }
+
+      before do
+        headers = {
+          "CONTENT_TYPE" => "application/json",
+          "Authorization" => "Bearer #{access_token.token}"
+        }
+
+        get '/api/v0/profiles', headers: headers
+      end
+
+      it 'returns 200 code' do
+        expect(response).to be_successful
+      end
+
+      it 'returns list of users except me' do
+        expect(response.body).to have_json_size 2
+      end
+
+      %w(id email first_name last_name).each do |attr|
+        it "does not contains #{attr}" do
+          expect(response.body).to_not be_json_eql(user.send(attr.to_sym).to_json)
+        end
+      end
+
+      %w(password encrypted_password).each do |attr|
+        it "does not contains #{attr}" do
+          expect(response.body).to_not have_json_path("#{attr}")
+        end
+      end
+    end
+  end
 end

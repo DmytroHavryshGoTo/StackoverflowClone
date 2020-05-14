@@ -48,7 +48,7 @@ group :development, :test do
 
   gem 'database_cleaner-active_record'
   gem 'database_cleaner-sequel'
-  gem 'rubocop', require: false
+  #gem 'rubocop', require: false
 
 end
 

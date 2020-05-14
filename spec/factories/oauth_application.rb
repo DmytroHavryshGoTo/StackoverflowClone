@@ -4,6 +4,7 @@ FactoryBot.define do
   factory :access_token, class: "Doorkeeper::AccessToken" do
     resource_owner_id { create(:user).id }
     application
+    scopes { 'public' }
     expires_in { 2.hours }
   end
 
@@ -12,6 +13,5 @@ FactoryBot.define do
     redirect_uri { "urn:ietf:wg:oauth:2.0:oob" }
     uid { '12345678' }
     secret { '87654321' }
-    scopes { 'public' }
   end
 end
