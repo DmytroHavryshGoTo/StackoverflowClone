@@ -50,7 +50,7 @@ RSpec.describe 'Profile API' do
     end
   end
 
-  describe 'GET ' do
+  describe 'GET /' do
     context 'unauthorized' do
       headers = {
         "CONTENT_TYPE" => "application/json"
