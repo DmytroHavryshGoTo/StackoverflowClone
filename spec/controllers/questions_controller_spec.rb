@@ -109,14 +109,14 @@ RSpec.describe QuestionsController, type: :controller do
 
     context 'invalid data' do
       before do
-        @prev_title = question.title
-        patch :update, params: { id: question, question: { title: nil, body: nil } }, format: :js
+        @prev_title = own_question.title
+        patch :update, params: { id: own_question, question: { title: nil, body: nil } }, format: :js
       end
 
       it 'updates question attributes' do
-        question.reload
-        expect(question.title).to eq @prev_title
-        expect(question.body).to eq 'MyString'
+        own_question.reload
+        expect(own_question.title).to eq @prev_title
+        expect(own_question.body).to eq 'MyString'
       end
 
       it 'renders update view' do

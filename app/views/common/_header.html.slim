@@ -6,6 +6,8 @@
   .container
     .nav.text-right
       - if user_signed_in?
+        - if current_user.admin?
+        = link_to 'Register App for API', oauth_applications_path
         = link_to 'Sign out', destroy_user_session_path, method: :delete
       - else
         = link_to 'Sign in', new_user_session_path

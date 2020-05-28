@@ -9,6 +9,7 @@ FactoryBot.define do
     password_confirmation { '123456' }
     first_name { 'John' }
     last_name { 'Dou' }
+    admin { false }
     created_at { Time.now }
     confirmed_at { Time.now }
   end
