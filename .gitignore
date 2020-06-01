@@ -30,7 +30,7 @@
 yarn-debug.log*
 .yarn-integrity
 .idea
-config/database.yml
+# config/database.yml
 /public/uploads
 .env
 # Elastic Beanstalk Files
