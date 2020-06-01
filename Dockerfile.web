@@ -24,11 +24,6 @@ COPY . ./
 
 RUN rails assets:precompile
 
-# ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
-
-# RUN bundle exec rake db:create
-# RUN bundle exec rake db:migrate
-
-RUN bundle exec rails s -b 0.0.0.0
+ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
 
 
