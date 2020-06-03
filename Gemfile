@@ -37,7 +37,7 @@ gem 'omniauth-facebook'
 gem 'cancancan'
 gem 'doorkeeper'
 gem 'unicorn'
-gem 'therubyracer'
+gem 'therubyracer', '~> 0.12.3'
 
 gem 'active_model_serializers', '~> 0.10.0'
 
