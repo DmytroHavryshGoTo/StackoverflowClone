@@ -27,7 +27,9 @@ gem 'font_awesome5_rails'
 gem 'carrierwave', '~> 2.0'
 gem "cocoon"
 
-gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'dotenv'
+gem 'dotenv-deployment', require: 'dotenv/deployment'
+
 
 gem 'devise'
 gem 'omniauth'
