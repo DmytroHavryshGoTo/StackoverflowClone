@@ -27,11 +27,15 @@ gem 'font_awesome5_rails'
 gem 'carrierwave', '~> 2.0'
 gem "cocoon"
 
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'cancancan'
 gem 'doorkeeper'
+gem 'unicorn'
+#gem 'therubyracer', :platform=>:ruby
 
 gem 'active_model_serializers', '~> 0.10.0'
 
@@ -40,8 +44,6 @@ gem 'active_model_serializers', '~> 0.10.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
-
-gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -55,7 +57,6 @@ group :development, :test do
   gem 'database_cleaner-sequel'
   #gem 'rubocop', require: false
 
-
 end
 
 group :development do
@@ -67,6 +68,11 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener'
   gem 'pry'
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano3-unicorn', require: false
 end
 
 group :test do
