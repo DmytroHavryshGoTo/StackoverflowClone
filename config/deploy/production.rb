@@ -60,3 +60,4 @@ server "18.194.249.193", user: "ubuntu", roles: %w{app db web}, primary: true
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
