@@ -21,7 +21,7 @@ end
 # preload
 preload_app true
 
-before_fork do |server|
+before_fork do |server, worker|
   # the following is highly recomended for Rails + "preload_app true"
   # as there's no need for the master process to hold a connection
   if defined?(ActiveRecord::Base)
@@ -40,7 +40,7 @@ before_fork do |server|
   end
 end
 
-after_fork do |server|
+after_fork do |server, worker|
   if defined?(ActiveRecord::Base)
     ActiveRecord::Base.establish_connection
   end

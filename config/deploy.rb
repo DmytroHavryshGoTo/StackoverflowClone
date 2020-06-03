@@ -3,6 +3,7 @@ lock "~> 3.14.0"
 
 set :application, "stackoverblow"
 set :repo_url, "git@github.com:DmytroHavryshGoTo/StackoverflowClone.git"
+set :rails_env, 'production'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -27,6 +28,7 @@ append :linked_files, "config/database.yml", ".env"
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
+
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
@@ -40,12 +42,21 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 # set :ssh_options, verify_host_key: :secure
 
 namespace :deploy do
-  desc 'Restart app'
-  task :restart do
-    on roles(app), in: :sequence, wait: 5 do
-      invoke 'unicorn:restart'
+  # desc 'Restart app'
+  # task :restart do
+  #   on roles(:app), in: :sequence, wait: 5 do
+  #     invoke 'unicorn:restart'
+  #   end
+  # end
+
+  desc 'Run rake yarn:install'
+  task :yarn_install do
+    on roles(:web) do
+      within release_path do
+        execute("cd #{release_path} && yarn install")
+      end
     end
   end
 
-  after :publishing, :restart
+  # after :publishing, :restart
 end
