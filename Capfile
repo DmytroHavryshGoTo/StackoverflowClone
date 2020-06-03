@@ -7,6 +7,7 @@ require "capistrano/rvm"
 require "capistrano/bundler"
 require "capistrano/rails"
 require "capistrano3/unicorn"
+load 'deploy/assets'
 
 # Load the SCM plugin appropriate to your project:
 #
