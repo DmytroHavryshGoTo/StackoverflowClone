@@ -1,7 +1,7 @@
 .single-attachment
   = link_to a.file.url, class: 'file' do
     = fa_icon 'file'
-    p= a.file.identifier
+    p= a.file.file.filename
   - if can?(:update, a)
     = link_to attachment_path(a), method: :delete, remote: true, class: 'remove-file' do
       = fa_icon 'times-circle'
