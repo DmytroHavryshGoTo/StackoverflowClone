@@ -67,3 +67,18 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 end
+
+namespace :rails do
+  desc 'Open a rails console `cap production rails:console`'
+  task :console do    
+    server = roles(:app)[ARGV[2].to_i]
+
+    puts "Opening a console on: #{server.hostname}...."
+
+    cmd = "ssh -i ~/macbook.pem #{server.user}@#{server.hostname} -t 'cd #{fetch(:deploy_to)}/current && RAILS_ENV=#{fetch(:rails_env)} ~/.rvm/bin/rvm ruby-2.6.6@stackoverblow do bundle exec rails console'"
+
+    puts cmd
+
+    exec cmd
+  end
+end
