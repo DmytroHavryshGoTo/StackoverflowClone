@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'slim-rails'
 gem 'font_awesome5_rails'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem "cocoon"
 
 gem 'devise'
